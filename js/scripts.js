@@ -100,7 +100,9 @@ $(document).ready(function() {
     var inputtedEmailAddresses = ("<br>Personal: " + inputtedEmailAddress1 + "<br>Work: " + inputtedEmailAddress2)
     console.log(inputtedEmailAddresses)
 
-    var inputtedPhysicalAddress = $("input#new-physical-address").val();
+    var inputtedPhysicalAddress1 = $("input#new-physical-address1").val();
+    var inputtedPhysicalAddress2 = $("input#new-physical-address2").val();
+    var inputtedPhysicalAddress = ("<br>Home: " + inputtedPhysicalAddress1 + "<br>Work: " + inputtedPhysicalAddress2)
     var newContact = new Contact(inputtedFirstName,     inputtedLastName, inputtedPhoneNumber, inputtedEmailAddresses, inputtedPhysicalAddress);
 
     $("input#new-first-name").val("");
@@ -108,7 +110,8 @@ $(document).ready(function() {
     $("input#new-phone-number").val("");
     $("input#new-email-address1").val("");
     $("input#new-email-address2").val("");
-    $("input#new-physical-address").val("");
+    $("input#new-physical-address1").val("");
+    $("input#new-physical-address2").val("");
 
     addressBook.addContact(newContact);
 
