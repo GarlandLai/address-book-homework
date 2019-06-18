@@ -88,16 +88,16 @@ function displayContactDetails(addressBookToDisplay) {
 
 $(document).ready(function() {
   attachContactListeners();
-  console.log($('input:checkbox[name=email1]').prop('checked'));
+  // console.log($('input:checkbox[name=email1]').prop('checked'));
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
     var inputtedFirstName = $("input#new-first-name").val();
     var inputtedLastName = $("input#new-last-name").val();
     var inputtedPhoneNumber = $("input#new-phone-number").val();
 
-    var inputtedEmailAddress1 = $("input#new-email-address1" ).val();
-    var inputtedEmailAddress2 = $("input#new-email-address2" ).val();
-    var inputtedEmailAddresses = ("<br>" + inputtedEmailAddress1 + "<br>" + inputtedEmailAddress2)
+    var inputtedEmailAddress1 = $("input#new-email-address1").val();
+    var inputtedEmailAddress2 = $("input#new-email-address2").val();
+    var inputtedEmailAddresses = ("<br>Personal: " + inputtedEmailAddress1 + "<br>Work: " + inputtedEmailAddress2)
     console.log(inputtedEmailAddresses)
 
     var inputtedPhysicalAddress = $("input#new-physical-address").val();
@@ -106,14 +106,17 @@ $(document).ready(function() {
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
     $("input#new-phone-number").val("");
-    $("input#new-email-address").val("");
+    $("input#new-email-address1").val("");
+    $("input#new-email-address2").val("");
     $("input#new-physical-address").val("");
 
     addressBook.addContact(newContact);
 
-    if ($('input:checkbox[name=email1]').prop('checked')) {
-      $('.email-address').append("Work: " + inputtedEmailAddresses);
-    }
+// //trying to figure out logic if work is checked.
+//     if ($('input:checkbox[name=email1]').prop('checked')) {
+//       inputtedEmailAddress1 = ("Work: " + inputtedEmailAddress1);
+//       console.log(InputtedEmailAddress1);
+//     }
 
     displayContactDetails(addressBook);
   })
