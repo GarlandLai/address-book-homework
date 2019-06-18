@@ -42,7 +42,7 @@ function Contact(firstName, lastName, phoneNumber, emailAddress, physicalAddress
   this.firstName = firstName,
   this.lastName = lastName,
   this.phoneNumber = phoneNumber,
-  this.emailAddress = emailAddress;
+  this.emailAddress = emailAddress,
   this.physicalAddress = physicalAddress;
 }
 
@@ -88,14 +88,20 @@ function displayContactDetails(addressBookToDisplay) {
 
 $(document).ready(function() {
   attachContactListeners();
+  console.log($('input:checkbox[name=email1]').prop('checked'));
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
     var inputtedFirstName = $("input#new-first-name").val();
     var inputtedLastName = $("input#new-last-name").val();
     var inputtedPhoneNumber = $("input#new-phone-number").val();
-    var inputtedEmailAddress = $("input#new-email-address").val();
+
+    var inputtedEmailAddress1 = $("input#new-email-address1" ).val();
+    var inputtedEmailAddress2 = $("input#new-email-address2" ).val();
+    var inputtedEmailAddresses = ("<br>" + inputtedEmailAddress1 + "<br>" + inputtedEmailAddress2)
+    console.log(inputtedEmailAddresses)
+
     var inputtedPhysicalAddress = $("input#new-physical-address").val();
-    var newContact = new Contact(inputtedFirstName,     inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedPhysicalAddress);
+    var newContact = new Contact(inputtedFirstName,     inputtedLastName, inputtedPhoneNumber, inputtedEmailAddresses, inputtedPhysicalAddress);
 
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
@@ -104,6 +110,11 @@ $(document).ready(function() {
     $("input#new-physical-address").val("");
 
     addressBook.addContact(newContact);
+
+    if ($('input:checkbox[name=email1]').prop('checked')) {
+      $('.email-address').append("Work: " + inputtedEmailAddresses);
+    }
+
     displayContactDetails(addressBook);
   })
 })
